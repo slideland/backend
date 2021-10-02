@@ -18,9 +18,9 @@ def log_dor(high_ls,
     - (np.log(high_area) + 
        moderate_weight*np.log(moderate_area) - 
        (1+moderate_weight)*np.log(low_area)))
-    
-    
+
 class Model_eval:
+
     #initilizes model evaluation. Moderate_weight is a number in [0,1] which
     #specifies the weight of a "moderate" prediction compared to a "high" 
     #predicition. The larger the prior the slower the evaluation changes
@@ -32,6 +32,7 @@ class Model_eval:
         self.moderate_area = 0.001*prior
         self.low_area = 0.991*prior
         self.moderate_weight = moderate_weight 
+
     #returns the log diagnostic odds ratio for the test
     def get_score(self):
         return(log_dor(self.high_ls, 
@@ -41,6 +42,7 @@ class Model_eval:
                        self.moderate_area, 
                        self.low_area, 
                        self.moderate_weight))
+
     #adds a new historical datapoint. Classification is the model predicition
     #for this landslide, and high_area modertae_area and low_area are
     #the areas classified as high moderate or low risk by the model at the 
