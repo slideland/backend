@@ -7,7 +7,7 @@ from api.routes import create_routes
 
 # default mongodb configuration
 default_config = {'MONGODB_SETTINGS': {
-    'db': 'test_db2',
+    'db': 'slideland_test',
     'host': 'localhost',
     'port': 27017,
     'username': 'admin',
