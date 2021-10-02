@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..")
 from mongoengine import NotUniqueError, ValidationError
 from models.history import History
 from tools.mongo_loader import mongo
