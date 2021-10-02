@@ -8,3 +8,4 @@ def invalid_route() -> Response:
     resp.status_code = 404
     return resp
 
+
