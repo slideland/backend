@@ -5,7 +5,7 @@ import csv
 
 
 @mongo
-def csv_to_square(filepath: str = 'resources/history.csv', delimiter: str = ','):
+def csv_to_history(filepath: str = 'resources/history.csv', delimiter: str = ','):
     with open(filepath, 'r') as file:
         data = csv.DictReader(file, delimiter=delimiter)
         for data_point in data:
@@ -32,6 +32,6 @@ def load_all(config: dict = None):
     from tools.mongo_loader import default_config
     if config:
         default_config.update(config)
-    csv_to_square()
+    csv_to_history()
 
 load_all()
