@@ -1,6 +1,6 @@
 from mongoengine import Document, StringField
 
-class Prediction(Document):
-    name = StringField()
-    url = StringField()
-    current_score = FloatField()
+class ApiModel(Document):
+    name = StringField(required=True)
+    url = StringField(required=True)
+    score = FloatField(required=True, default=0)

@@ -22,5 +22,6 @@ class NasaTranslateApi(Resource):
                 points.append([v[0],v[1]])
             areas.apped({"risk": risk, "area":points})
         output = {"areas": areas}
+        #output = json.dumps(output)
         return jsonify({'result': output})
 

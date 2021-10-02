@@ -27,18 +27,25 @@ class UserInputsApi(Resource):
             r = requests.get(url = api.url)
             api_data = r.json()
             # loop over all areas in the api
-            for value in api_data["features"]:
+            had_area = False
+            for value in api_data["areas"]:
                 #build a polygon of that area
                 points = []
-                for v in value["geometry"]["coordinates"][0]:
+                for v in value["area"]:
                     points.append((v[0],v[1]))
                 polygon = Polygon(points)
                 #if the areas crosses we evaluate the model's prediction and update it's score
                 if polygon.crosses(slide_polygon):
-                    risk = value["properties"]["nowcast"]
+                    had_area = True
+                    risk = value["risk"]
+                    score = api_data["score"]
                     #TODO:
-                    #    send to sebbi's func
-                    #    http PUT update score
+                    #    newscore = send to sebbi's func
+                    api.update(score=newscore) 
+            if not had_area:
+                #TODO:
+                #    newscore = send to sebbi's func
+                api.update(score=newscore) 
 
         #TODO: add to history(?)
         output = {'id': str(post.id)}
