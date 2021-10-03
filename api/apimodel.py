@@ -11,9 +11,20 @@ class ApiModelsApi(Resource):
     def post(self) -> Response:
         #add new api with no prediction
         data = request.get_json()
-        post = ApiModel(**data).save()
-        output = {'id': str(post.id)}
-        return jsonify({'result': output})
+        try:
+            #check that the api has valid format
+            r = requests.get(url = data["url"])
+            api_data = r.json()
+            for value in api_data["areas"]:
+                risk = value["risk"]
+                for v in value["area"]:
+                    pass
+            post = ApiModel(**data).save()
+            output = {'id': str(post.id)}
+            return jsonify({'result': output, "isValid": True})
+        except:
+            return jsonify({'result': None, "isValid": False})
+
 
 class ApiModelApi(Resource):
     def get(self, apimodel_id: str) -> Response:
