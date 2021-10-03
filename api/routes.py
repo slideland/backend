@@ -4,6 +4,7 @@ from api.history import HistoriesApi, HistoryApi
 from api.userinput import UserInputsApi, UserInputApi
 from api.apimodel import ApiModelApi, ApiModelsApi
 from api.nasatranslate import NasaTranslateApi
+from api.dummyapi import DummyApi
 
 def create_routes(api: Api):
     api.add_resource(HistoriesApi, '/history/')
@@ -19,3 +20,4 @@ def create_routes(api: Api):
     api.add_resource(ApiModelApi, '/apimodel/<apimodel_id>')
 
     api.add_resource(NasaTranslateApi, '/nasatranslate/')
+    api.add_resource(DummyApi, '/dummyapi/')

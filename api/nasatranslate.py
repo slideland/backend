@@ -15,8 +15,7 @@ class NasaTranslateApi(Resource):
         r = requests.get(url = URL)
         data = r.json()
         #TODO: dangerous? change from time to time?
-        URL = data["items"][0]["action"][0]["using"][5]["using"][0]["url"]
-        #URL = "https://pmmpublisher.pps.eosdis.nasa.gov/products/global_landslide_nowcast_3hr/export/Global/2021/275/global_landslide_nowcast_3hr.20211002.113000.geojson"
+        URL = data["items"][0]["action"][5]["using"][0]["url"]
         r = requests.get(url = URL)
         data = r.json()
         areas = []
