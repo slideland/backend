@@ -11,7 +11,11 @@ class DummyApi(Resource):
         with open("resources/nasa_static_predictions.geojson", "r") as file:
             data = json.load(file)
             areas = []
+            count = 0
             for value in data["features"]:
+                count += 1
+                if count > 2000:
+                    break
                 risk = value["properties"]["nowcast"]
                 points = []
                 for v in value["geometry"]["coordinates"][0]:
