@@ -4,6 +4,7 @@ from flask_mongoengine import MongoEngine
 from api.routes import create_routes
 from flask_cors import CORS
 
+"""
 default_config = {'MONGODB_SETTINGS': {
     'db': 'slideland1',
     'host': 'localhost',
@@ -11,12 +12,17 @@ default_config = {'MONGODB_SETTINGS': {
     'username': 'admin',
     'password': 'password',
     'authentication_source': 'admin'}}
+"""
 
 
 def get_flask_app(config: dict = None) -> app.Flask:
     flask_app = Flask(__name__)
-    config = default_config if config is None else config
-    flask_app.config.update(config)
+    DB_URI = #TODO
+    flask_app.config["MONGODB_HOST"] = DB_URI
+    
+    #config = default_config if config is None else config
+    #flask_app.config.update(config)
+
     api = Api(app=flask_app)
     create_routes(api=api)
     db = MongoEngine(app=flask_app)

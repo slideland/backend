@@ -35,7 +35,7 @@ class Model_eval:
 
     #returns the log diagnostic odds ratio for the test
     def get_score(self):
-        return(log_dor(self.high_ls, 
+        return(self.log_dor(self.high_ls, 
                        self.moderate_ls, 
                        self.low_ls, 
                        self.high_area, 
