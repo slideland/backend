@@ -26,11 +26,7 @@ class ApiModelApi(Resource):
         api_data = r.json()
         preds = []
         # loop over all areas in the api
-        count = 1
         for value in api_data["areas"]:
-            count += 1
-            if count is 110:
-                break
             risk = value["risk"]
             lats = []
             longs = []
