@@ -47,6 +47,7 @@ class Model_eval:
     #for this landslide, and high_area modertae_area and low_area are
     #the areas classified as high moderate or low risk by the model at the 
     #time of the landslide (total or pct)
+
     def add_slide(self, 
                   classification, 
                   high_area, 

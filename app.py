@@ -19,7 +19,7 @@ default_config = {'MONGODB_SETTINGS': {
 
 def get_flask_app(config: dict = None) -> app.Flask:
     flask_app = Flask(__name__)
-    DB_URI = os.environ.get("DB_URL")
+    DB_URI = os.environ.get("DB_URI")
     flask_app.config["MONGODB_HOST"] = DB_URI
     
     #config = default_config if config is None else config

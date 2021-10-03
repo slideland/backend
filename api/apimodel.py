@@ -35,3 +35,8 @@ class ApiModelApi(Resource):
             preds.append(pred)
         api_obj.update(predictions=preds)
         return jsonify({'result': api_obj})
+
+class ApiModelScoreApi(Resource):
+    def get(self, apimodel_id: str) -> Response:
+        output = ApiModel.objects.get(id=apimodel_id).get_score()
+        return jsonify({'result': output})
