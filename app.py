@@ -3,6 +3,8 @@ from flask_restful import Api
 from flask_mongoengine import MongoEngine
 from api.routes import create_routes
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
 
 """
 default_config = {'MONGODB_SETTINGS': {
@@ -17,7 +19,7 @@ default_config = {'MONGODB_SETTINGS': {
 
 def get_flask_app(config: dict = None) -> app.Flask:
     flask_app = Flask(__name__)
-    DB_URI = #TODO
+    DB_URI = os.environ.get("DB_URI")
     flask_app.config["MONGODB_HOST"] = DB_URI
     
     #config = default_config if config is None else config
@@ -30,6 +32,7 @@ def get_flask_app(config: dict = None) -> app.Flask:
 
 
 if __name__ == '__main__':
+    load_dotenv()
     app = get_flask_app()
     CORS(app)
     cors = CORS(app, resource={
