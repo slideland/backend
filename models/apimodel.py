@@ -70,4 +70,5 @@ class ApiModel(Document):
         self.high_area += high_area*weight
         self.moderate_area += moderate_area*weight
         self.low_area += low_area*weight
+        self.save()
     

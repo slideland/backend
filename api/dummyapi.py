@@ -18,5 +18,5 @@ class DummyApi(Resource):
                     points.append([v[0],v[1]])
                 areas.append({"risk": risk, "area":points})
             output = {"areas": areas}
-        return jsonify(output)
+            return jsonify(output)
 
