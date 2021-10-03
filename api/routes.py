@@ -1,5 +1,5 @@
 from flask_restful import Api
-from api.predictions import PredictionsApi, PredictionApi
+#from api.predictions import PredictionsApi, PredictionApi
 from api.history import HistoriesApi, HistoryApi
 from api.userinput import UserInputsApi, UserInputApi
 from api.apimodel import ApiModelApi, ApiModelsApi

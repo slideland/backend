@@ -2,6 +2,7 @@ from flask import Flask, app
 from flask_restful import Api
 from flask_mongoengine import MongoEngine
 from api.routes import create_routes
+from flask_cors import CORS
 
 default_config = {'MONGODB_SETTINGS': {
     'db': 'slideland1',
@@ -24,4 +25,10 @@ def get_flask_app(config: dict = None) -> app.Flask:
 
 if __name__ == '__main__':
     app = get_flask_app()
+    CORS(app)
+    cors = CORS(app, resource={
+        r"/*":{
+            "origins":"*"
+        }
+    })
     app.run(debug=True)
