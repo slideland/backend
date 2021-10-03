@@ -17,7 +17,3 @@ class HistoryApi(Resource):
     def get(self, history_id: str) -> Response:
         output = History.objects.get(id=history_id)
         return jsonify({'result': output})
-    def put(self, history_id: str) -> Response:
-        data = request.get_json()
-        put = History.objects(id=history_id).update(**data)
-        return jsonify({'result': put})

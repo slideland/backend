@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import Response, request, jsonify
 from models.prediction import Prediction
 
+"""
 class PredictionsApi(Resource):
     def get(self) -> Response:
         output = Prediction.objects()
@@ -20,3 +21,4 @@ class PredictionApi(Resource):
         data = request.get_json()
         put = Prediction.objects(id=prediction_id).update(**data)
         return jsonify({'result': put})
+"""

@@ -5,7 +5,7 @@ from models.apimodel import ApiModel
 import requests
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
-from model_eval import Model_eval
+from api.model_eval import Model_eval
 
 class UserInputsApi(Resource):
     def get(self) -> Response:
@@ -13,8 +13,8 @@ class UserInputsApi(Resource):
         return jsonify({'result': output})
     def post(self) -> Response:
         user_data = request.get_json()
-        #TODO: check input validity, len long = lat ect
         post = UserInput(**user_data).save()
+        output = {'id': str(post.id)}
 
         #build a polygon where the landslide took place
         slide_points = []
@@ -24,31 +24,27 @@ class UserInputsApi(Resource):
 
         #loop over all apis of models we have
         for api in ApiModel.objects:
-            r = requests.get(url = api.url)
-            api_data = r.json()
             # loop over all areas in the api
             had_area = False
-            for value in api_data["areas"]:
+            for value in api_data.predictions:
                 #build a polygon of that area
                 points = []
-                for v in value["area"]:
-                    points.append((v[0],v[1]))
+                for i,v in enumerate(api["latitudes"]):
+                    points.append((v,api["longitudes"][i]))
                 polygon = Polygon(points)
                 #if the areas crosses we evaluate the model's prediction and update it's score
                 if polygon.crosses(slide_polygon):
                     had_area = True
                     risk = value["risk"]
-                    score = api_data["score"]
+                    score = value["score"]
                     #TODO:
                     #    newscore = send to sebbi's func
-                    api.update(score=newscore) 
+                    #api.update(score=newscore) 
             if not had_area:
                 #TODO:
                 #    newscore = send to sebbi's func
-                api.update(score=newscore) 
-
-        #TODO: add to history(?)
-        output = {'id': str(post.id)}
+                #api.update(score=newscore) 
+                pass
         return jsonify({'result': output})
 
 class UserInputApi(Resource):
