@@ -32,6 +32,12 @@ def get_flask_app(config: dict = None) -> app.Flask:
 
 load_dotenv()
 app = get_flask_app()
+CORS(app)
+cors = CORS(app, resource={
+    r"/*":{
+        "origins":"*"
+    }
+})
 
 if __name__ == '__main__':
     CORS(app)
