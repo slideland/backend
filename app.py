@@ -30,10 +30,10 @@ def get_flask_app(config: dict = None) -> app.Flask:
     db = MongoEngine(app=flask_app)
     return flask_app
 
+load_dotenv()
+app = get_flask_app()
 
 if __name__ == '__main__':
-    load_dotenv()
-    app = get_flask_app()
     CORS(app)
     cors = CORS(app, resource={
         r"/*":{
